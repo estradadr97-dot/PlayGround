@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101619" />
+  <title>From Zero to Champion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-shell">
+    <canvas id="world"></canvas>
+    <div class="world-vignette"></div>
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">Z<span>↗</span></div><div><div class="brand-title">FROM ZERO <i>TO</i> CHAMPION</div><div class="brand-sub">YOUR FIGHT. YOUR CITY. YOUR LEGACY.</div></div></div>
+      <div class="top-status"><div class="weather"><span class="sun">☼</span> <b>72°</b> <span>LOS ANGELES</span></div><div class="status-divider"></div><div class="clock"><span class="clock-dot"></span><span id="clock">DAY 01 · 08:30 AM</span></div></div>
+      <button class="icon-button" id="sound-toggle" aria-label="Toggle sound">♫</button>
+    </header>
+    <aside class="left-rail">
+      <div class="profile-card"><div class="avatar">👊</div><div class="profile-copy"><div class="eyebrow">AMATEUR · UNRANKED</div><h2 id="fighter-name">JAX “ROOKIE” REED</h2><div class="profile-meta"><span>0 - 0 - 0</span><span class="meta-sep">/</span><span>WELTERWEIGHT</span></div></div><button class="edit-name" id="rename" title="Edit fighter name">✎</button></div>
+      <div class="cash-card"><div><div class="eyebrow">AVAILABLE CASH</div><div class="cash-amount" id="cash">$500</div></div><div class="cash-icon">＄</div><div class="cash-foot"><span>NET WORTH</span><b id="net-worth">$500</b></div></div>
+      <div class="vitals-card"><div class="section-heading"><span>FIGHTER CONDITION</span><span class="live-dot"></span></div><div class="vital-row"><span>ENERGY</span><div class="meter"><i id="energy-bar"></i></div><b id="energy-value">82%</b></div><div class="vital-row"><span>FATIGUE</span><div class="meter fatigue"><i id="fatigue-bar"></i></div><b id="fatigue-value">18%</b></div><div class="vital-row"><span>HEALTH</span><div class="meter health"><i id="health-bar"></i></div><b id="health-value">100%</b></div></div>
+      <div class="skills-card"><div class="section-heading"><span>FIGHT IQ</span><span class="level-pill">LVL <b id="level">1</b></span></div><div class="skill-grid" id="skill-grid"></div><div class="xp-row"><span>CAREER XP</span><div class="xp-meter"><i id="xp-bar"></i></div><b id="xp-value">0 / 100</b></div></div>
+      <div class="left-bottom"><span class="saving-dot"></span><span id="save-status">CAREER AUTOSAVED</span><button id="reset-save">RESET</button></div>
+    </aside>
+    <main class="right-panel"><div class="panel-intro"><div><div class="eyebrow orange">THE GRIND STARTS NOW</div><h1>MAKE YOUR<br><em>OWN</em> LEGACY.</h1></div><div class="rank-seal"><span>01</span><small>NO<br>RANK</small></div></div>
+      <div class="next-fight-card"><div class="fight-tag"><span class="tiny-pulse"></span> NEXT OPPORTUNITY</div><div class="fight-card-body"><div><b id="next-event">OPEN MAT SHOWCASE</b><span id="event-detail">Amateur bout · The Foundry Gym</span></div><div class="purse"><small>WIN BONUS</small><b id="event-purse">$350</b></div></div><button class="primary-button full" id="fight-button"><span>STEP INTO THE CAGE</span><b>↗</b></button></div>
+      <div class="quick-actions"><button class="action-tile" data-panel="training"><span class="tile-icon training-icon">↗</span><span><b>TRAIN</b><small>Build your arsenal</small></span><i>›</i></button><button class="action-tile" data-panel="career"><span class="tile-icon career-icon">◈</span><span><b>CAREER</b><small>0 bouts · no rank</small></span><i>›</i></button></div>
+      <div class="city-header"><div><div class="section-heading">CITY DIRECTORY <span class="count">06 PLACES</span></div><small>GET OUT THERE. MAKE IT HAPPEN.</small></div><button class="map-toggle" id="map-toggle">⌖ <span>MAP</span></button></div>
+      <div class="location-list" id="location-list"></div>
+      <div class="panel-footer"><span>LOS ANGELES, CA</span><span>▰ <b id="day-label">MON · DAY 01</b></span></div>
+    </main>
+    <div class="interaction-prompt" id="interaction-prompt"><span class="keycap">E</span><span>ENTER <b id="nearby-name">THE FOUNDry</b></span></div>
+    <div class="controls-hint"><span>WASD</span> MOVE <i>·</i> <span>SHIFT</span> SPRINT <i>·</i> <span>E</span> INTERACT <i>·</i> <span>DRAG</span> LOOK</div>
+    <div class="mobile-controls" id="mobile-controls"><div class="joystick" id="joystick"><div class="stick"></div></div><div class="mobile-actions"><button data-mobile="interact">E</button><button data-mobile="sprint">⇧</button></div></div>
+    <div class="toast" id="toast"></div>
+    <div class="modal-backdrop" id="modal-backdrop"><section class="game-modal" id="modal"><button class="modal-close" id="modal-close">×</button><div id="modal-content"></div></section></div>
+    <div class="fight-hud" id="fight-hud"><div class="fight-top"><div class="round-pill" id="round-pill">ROUND 1 / 3</div><div class="fight-timer" id="fight-timer">03:00</div><div class="round-pill" id="fight-state">AMATEUR BOUT</div></div><div class="combatants"><div class="combatant"><div class="combatant-top"><span>JAX REED</span><b id="player-fight-hp">100</b></div><div class="combat-bar"><i id="player-fight-bar"></i></div><div class="combat-stamina"><i id="player-fight-stamina"></i></div></div><div class="vs">VS</div><div class="combatant enemy"><div class="combatant-top"><span id="enemy-name">MILO “THE WALL” VEGA</span><b id="enemy-fight-hp">100</b></div><div class="combat-bar"><i id="enemy-fight-bar"></i></div><div class="combat-stamina"><i id="enemy-fight-stamina"></i></div></div></div><div class="fight-log" id="fight-log">The referee calls you to the center of the cage.</div><div class="fight-controls"><button data-move="jab"><b>JAB</b><small>1 · Quick strike</small></button><button data-move="kick"><b>ROUND KICK</b><small>2 · Heavy strike</small></button><button data-move="grapple"><b>TAKEDOWN</b><small>3 · Grapple</small></button><button data-move="block"><b>BLOCK</b><small>SPACE · Defend</small></button><button data-move="dodge"><b>DODGE</b><small>SHIFT · Evade</small></button><button data-move="submit"><b>SUBMIT</b><small>4 · Ground only</small></button></div><button class="fight-exit" id="fight-exit">WITHDRAW FROM BOUT</button></div>
+    <div class="map-overlay" id="map-overlay"><div class="map-card"><button class="modal-close" id="map-close">×</button><div class="eyebrow orange">YOUR NEIGHBORHOOD</div><h2>FIGHTER'S DISTRICT</h2><div class="map-art" id="map-art"></div><div class="map-legend"><span>● YOU ARE HERE</span><span>◆ CAREER SPOTLIGHT</span></div></div></div>
+  </div>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
